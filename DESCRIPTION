@@ -64,4 +64,5 @@ Collate:
     'functions-util.R'
     'peak-list-functions.R'
     'peaks-functions.R'
+    'plot-functions.R'
     'zzz.R'

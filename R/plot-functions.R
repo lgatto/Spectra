@@ -1,6 +1,23 @@
-# length(SpectraObject) == 1
-# type = "l" for profile (default), type = "h" for centroided
-.plotSingleSpectrum <- function(x, ...) {
+#' Plot a single spectrum
+#'
+#' @param x `Spectra(1)`.
+#' @param type `character(1)`, type of plot ("l" for profile/"h" for centroided)
+#' @param ... passed to `plot.default`.
+#'
+#' length(SpectraObject) == 1
+#' type = "l" for profile (default), type = "h" for centroided
+#'
+#' @noRd
+#' @example
+#' spd <- DataFrame(msLevel = c(1L, 2L), rtime = c(1.1, 1.2))
+#' spd$mz <- list(c(100, 103.2, 104.3, 106.5), c(45.6, 120.4, 190.2))
+#' spd$intensity <- list(c(200, 400, 34.2, 17), c(12.3, 15.2, 6.8))
+#'
+#' s <- Spectra(spd)
+.plotSingleSpectrum <- function(x,
+    type = if (isTRUE(isCentroided(x[1L]))) "h" else "l", ...) {
+    v <- as.list(x[1L])[[1L]]
+    plot(x = v[, "mz"], y = v[, "intensity"], type = type)
 }
 
 # length(SpectraObject) > 1
