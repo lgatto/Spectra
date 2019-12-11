@@ -26,6 +26,7 @@ jobs:
         - covr
         - pkgdown
         - testthat
+        - vdiffr
         - knitr
         - roxygen2
       r_github_packages:

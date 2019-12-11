@@ -29,6 +29,7 @@ Imports:
     BiocGenerics
 Suggests:
     testthat,
+    vdiffr,
     knitr (>= 1.1.0),
     msdata (>= 0.19.3),
     roxygen2,
