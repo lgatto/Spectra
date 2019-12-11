@@ -2,10 +2,9 @@
 #'
 #' @param x `Spectra(1)`.
 #' @param type `character(1)`, type of plot ("l" for profile/"h" for centroided)
+#' @param xlab `character(1)` a label for the x-axis.
+#' @param ylab `character(1)` a label for the y-axis.
 #' @param ... passed to `plot.default`.
-#'
-#' length(SpectraObject) == 1
-#' type = "l" for profile (default), type = "h" for centroided
 #'
 #' @noRd
 #' @example
@@ -15,9 +14,11 @@
 #'
 #' s <- Spectra(spd)
 .plotSingleSpectrum <- function(x,
-    type = if (isTRUE(isCentroided(x[1L]))) "h" else "l", ...) {
+    type = if (isTRUE(centroided(x[1L]))) "h" else "l",
+    xlab = "m/z", ylab = "intensity", ...) {
     v <- as.list(x[1L])[[1L]]
-    plot(x = v[, "mz"], y = v[, "intensity"], type = type)
+    plot(x = v[, "mz"], y = v[, "intensity"], type = type,
+         xlab = xlab, ylab = ylab, ...)
 }
 
 # length(SpectraObject) > 1
