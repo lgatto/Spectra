@@ -12,6 +12,14 @@ s <- Spectra(spd)
 
 test_that(".plotSingleSpectrum", {
     vdiffr::expect_doppelganger(
-        "plotSingleSpectrum", function().plotSingleSpectrum(s)
+        "plotSingleSpectrum-profile", function().plotSingleSpectrum(s)
+    )
+    centroided(s) <- TRUE
+    vdiffr::expect_doppelganger(
+        "plotSingleSpectrum-centroided", function().plotSingleSpectrum(s)
+    )
+    vdiffr::expect_doppelganger(
+        "plotSingleSpectrum-threedot",
+        function().plotSingleSpectrum(s, main = "Spectra", col = 2)
     )
 })
