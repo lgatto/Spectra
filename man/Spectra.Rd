@@ -4,6 +4,7 @@
 \alias{addProcessing}
 \alias{applyProcessing}
 \alias{combineSpectra}
+\alias{joinSpectraData}
 \alias{Spectra}
 \alias{Spectra-class}
 \alias{[,Spectra-method}
@@ -95,6 +96,14 @@ combineSpectra(
   FUN = combinePeaks,
   ...,
   BPPARAM = bpparam()
+)
+
+joinSpectraData(
+  object,
+  y,
+  by.x = "spectrumId",
+  by.y = NULL,
+  key = "spectrumId"
 )
 
 \S4method{Spectra}{DataFrame}(
@@ -382,6 +391,8 @@ of the \linkS4class{MsBackend}.}
 depending on the used backend, per-file parallel processing will be
 performed.}
 
+\item{y}{A \code{Spectra} object.}
+
 \item{processingQueue}{For \code{Spectra}: optional \code{list} of
 \linkS4class{ProcessingStep} objects.}
 
@@ -483,8 +494,6 @@ be used to subset/filter \code{object}.}
 Defaults to \code{binSize = 1}.}
 
 \item{breaks}{For \code{bin}: \code{numeric} defining the m/z breakpoints between bins.}
-
-\item{y}{A \code{Spectra} object.}
 
 \item{MAPFUN}{For \code{compareSpectra}: function to map/match peaks between the
 two compared spectra. See \code{\link[=joinPeaks]{joinPeaks()}} for more information and possible
