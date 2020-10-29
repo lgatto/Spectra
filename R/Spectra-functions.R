@@ -488,3 +488,25 @@ combineSpectra <- function(x, f = x$dataStorage, p = x$dataStorage,
         else common(y, z, tolerance = tolerance, ppm = ppm)
     })
 }
+
+
+#' @export joinSpectraData
+#'
+#' @rdname Spectra
+joinSpectraData <- function(object, y,
+                            by.x = "spectrumId",
+                            by.y = NULL,
+                            key = "spectrumId") {
+    stopifnot(inherits(object, "Spectra"))
+    if (is.null(by.y)) by.y <- by.x
+    message("Merging by '", by.x, "' and '",
+            by.y, "'.")
+    x <- spectraData(object)
+    xy <- mergeDFrame(x, y, all.x = TRUE, by.x = by.x, by.y = by.y)
+    stopifnot(identical(nrow(xy), length(object)))
+    message("Matching by '", key, "'.")
+    o <- match(xy[, key], x[, key])
+    xy <- xy[o, ]
+    suppressWarnings(spectraData(object) <- xy)
+    object
+}

@@ -5,6 +5,7 @@
 - Round retention time in figure titles.
 - Document differences between `spectrumId` (`spectrumID`),
   `acquitisionNum` and `scanIndex`. 
+- new `joinSpectraData()` function.
 
 ## Changes in 1.1.0
 
