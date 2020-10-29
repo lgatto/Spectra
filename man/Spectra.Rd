@@ -8,10 +8,10 @@
 \alias{Spectra}
 \alias{Spectra-class}
 \alias{[,Spectra-method}
-\alias{Spectra,DataFrame-method}
 \alias{Spectra,missing-method}
 \alias{Spectra,MsBackend-method}
 \alias{Spectra,character-method}
+\alias{Spectra,ANY-method}
 \alias{setBackend,Spectra,MsBackend-method}
 \alias{c,Spectra-method}
 \alias{split,Spectra,ANY-method}
@@ -106,15 +106,6 @@ joinSpectraData(
   key = "spectrumId"
 )
 
-\S4method{Spectra}{DataFrame}(
-  object,
-  processingQueue = list(),
-  metadata = list(),
-  ...,
-  backend = MsBackendDataFrame(),
-  BPPARAM = bpparam()
-)
-
 \S4method{Spectra}{missing}(
   object,
   processingQueue = list(),
@@ -137,6 +128,16 @@ joinSpectraData(
   processingQueue = list(),
   metadata = list(),
   source = MsBackendMzR(),
+  backend = source,
+  ...,
+  BPPARAM = bpparam()
+)
+
+\S4method{Spectra}{ANY}(
+  object,
+  processingQueue = list(),
+  metadata = list(),
+  source = MsBackendDataFrame(),
   backend = source,
   ...,
   BPPARAM = bpparam()
