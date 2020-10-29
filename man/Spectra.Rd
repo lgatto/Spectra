@@ -391,7 +391,16 @@ of the \linkS4class{MsBackend}.}
 depending on the used backend, per-file parallel processing will be
 performed.}
 
-\item{y}{A \code{Spectra} object.}
+\item{y}{A \code{Spectra} object or a \code{DataFrame} in \code{joinSpectraData}.}
+
+\item{by.x}{Specification of the columns used for merging. See
+\code{base::merge()} for details. Default is \code{"spectrumId"}.}
+
+\item{by.y}{Specification of the columns used for merging. See
+\code{base::merge()} for details.}
+
+\item{key}{A \code{character(1)} used to match the merged spectra data
+back to the spectra. Default is \code{"spectrumId"}.}
 
 \item{processingQueue}{For \code{Spectra}: optional \code{list} of
 \linkS4class{ProcessingStep} objects.}
@@ -648,7 +657,7 @@ parameter \code{backend}.
 }
 }
 
-\section{Accessing spectra data}{
+\section{Accessing and modifying spectra data}{
 
 \itemize{
 \item \code{$}, \verb{$<-}: gets (or sets) a spectra variable for all spectra in \code{object}.
@@ -769,6 +778,18 @@ available in \code{object}.
 spectrum) for all spectra in \code{object}. By default, the value
 reported in the original raw data file is returned. For an empty
 spectrum, \code{0} is returned.
+}
+
+Individual spectra data variable can be directly added with the
+\verb{$<-} syntax (see examples below).
+\itemize{
+\item The \code{joinSpectraData()} function allows to merge a \code{DataFrame} to
+the existing spectra data. It works like the \code{base::merge()}
+function: the \code{by.x} (default is \code{"spectrumId"}) and \code{by.y}
+arguments define the variable names in the current spectra data
+and the news \code{DataFrame}. In addition, the \code{key} argument (default
+is also \code{"spectrumId"}) is used the match the merged spectra data
+to the original spectra.
 }
 }
 

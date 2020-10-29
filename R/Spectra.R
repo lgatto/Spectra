@@ -122,7 +122,7 @@ NULL
 #'   parameter `backend`.
 #'
 #'
-#' @section Accessing spectra data:
+#' @section Accessing and modifying spectra data:
 #'
 #' - `$`, `$<-`: gets (or sets) a spectra variable for all spectra in `object`.
 #'   See examples for details.
@@ -272,6 +272,16 @@ NULL
 #'   reported in the original raw data file is returned. For an empty
 #'   spectrum, `0` is returned.
 #'
+#' Individual spectra data variable can be directly added with the
+#' `$<-` syntax (see examples below).
+#'
+#' - The `joinSpectraData()` function allows to merge a `DataFrame` to
+#'   the existing spectra data. It works like the `base::merge()`
+#'   function: the `by.x` (default is `"spectrumId"`) and `by.y`
+#'   arguments define the variable names in the current spectra data
+#'   and the news `DataFrame`. In addition, the `key` argument (default
+#'   is also `"spectrumId"`) is used the match the merged spectra data
+#'   to the original spectra.
 #'
 #' @section Data subsetting, filtering and merging:
 #'
@@ -508,6 +518,7 @@ NULL
 #'   ranges of successive non-0 peaks <= `threshold` are set to 0.
 #'   Parameter `msLevel.` allows to apply this to only spectra of certain MS
 #'   level(s).
+#' 
 #'
 #' @return See individual method description for the return value.
 #'
@@ -685,7 +696,16 @@ NULL
 #'
 #' @param x A `Spectra` object.
 #'
-#' @param y A `Spectra` object.
+#' @param y A `Spectra` object or a `DataFrame` in `joinSpectraData`.
+#'
+#' @param by.x Specification of the columns used for merging. See
+#'     `base::merge()` for details. Default is `"spectrumId"`.
+#'
+#' @param by.y Specification of the columns used for merging. See
+#'     `base::merge()` for details.
+#'
+#' @param key A `character(1)` used to match the merged spectra data
+#'     back to the spectra. Default is `"spectrumId"`.
 #'
 #' @param ... Additional arguments.
 #'
